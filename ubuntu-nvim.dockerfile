@@ -15,7 +15,10 @@ RUN chmod +x nvim.appimage
 RUN ./nvim.appimage --appimage-extract
 RUN ln -sf /squashfs-root/usr/bin/nvim /usr/bin/nvim
 
-RUN git clone https://github.com/LazyVim/starter ~/.config/nvim
+RUN git clone https://github.com/LazyVim/starter ~/.config/nvim && \
+    echo "return { { \"EdenEast/nightfox.nvim\" } }" \
+        >> ~/.config/nvim/lua/plugins/plugins.lua && \
+    echo "vim.cmd [[colorscheme carbonfox]]" >> ~/.config/nvim/init.lua
 
 RUN LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" \
     | grep -Po '"tag_name": "v\K[^"]*') && \
