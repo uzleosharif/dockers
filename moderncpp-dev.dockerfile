@@ -3,7 +3,7 @@ FROM nvim-ub
 RUN apt update && apt upgrade -y && apt install -y \
     g++-13 clang-16 cmake ninja-build pkg-config \
     libc++-16-dev libc++abi-16-dev cmake-curses-gui \
-    python3-full python3-venv file
+    python3-full python3-venv file doxygen
 
 RUN python3 -m venv venv && . /venv/bin/activate && pip install conan && \
     pip install cmakelang
