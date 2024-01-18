@@ -8,4 +8,5 @@
 FROM nvim-ub
 
 RUN apt update && apt upgrade -y && apt install -y latexmk texlive \
-    texlive-lang-german texlive-latex-extra texlive-fonts-extra
+    texlive-lang-german texlive-latex-extra texlive-fonts-extra \
+    texlive-science
