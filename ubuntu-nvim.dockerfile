@@ -3,7 +3,7 @@
 FROM ubuntu:23.10
 
 RUN apt update && apt upgrade -y && apt install -y \
-    unzip git ripgrep fd-find locales curl wget
+    unzip git ripgrep fd-find locales curl wget build-essential
 RUN locale-gen en_US.UTF-8
 
 ENV LANG en_US.UTF-8
