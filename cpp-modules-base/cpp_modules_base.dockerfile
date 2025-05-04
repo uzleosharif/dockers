@@ -71,10 +71,7 @@ RUN \
   # lazygit
   wget -q https://github.com/jesseduffield/lazygit/releases/download/v0.50.0/lazygit_0.50.0_Linux_x86_64.tar.gz && \
   tar zxf lazygit_0.50.0_Linux_x86_64.tar.gz && \
-  mv lazygit /usr/bin/. 
-
-# this is meant to go in above RUN block when modi has some stability
-RUN \
+  mv lazygit /usr/bin/. && \
   # modi
   git clone --depth=1 https://github.com/uzleosharif/module-builder.git && \
   cd module-builder/ && \
