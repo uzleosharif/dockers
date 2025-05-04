@@ -22,6 +22,7 @@ RUN \
   clang-format=1:20.0-63ubuntu1 \
   libc++-dev=1:20.0-63ubuntu1 \
   libc++abi-dev=1:20.0-63ubuntu1 \
+  ninja-build=1.12.1-1 \
   ca-certificates=20241223 \
   curl=8.12.1-3ubuntu1 \
   wget=1.24.5-2ubuntu1 && \
@@ -34,6 +35,9 @@ ENV LANG=en_US.UTF-8 \
 
 RUN \
   mkdir -p /modules/bmi/uzleo /modules/lib/uzleo /modules/include/ && \
+  git config --global user.name "uzleo" && \
+  git config --global user.email "uzleo_eth@proton.me" && \
+  # std
   clang++ -stdlib=libc++ -std=c++26 -O3 /usr/lib/llvm-20/share/libc++/v1/std.cppm --precompile -o /modules/bmi/std.pcm && \
   clang++ -std=c++26 -stdlib=libc++ -O3 /usr/lib/llvm-20/share/libc++/v1/std.compat.cppm --precompile -fmodule-file=std=/modules/bmi/std.pcm -o /modules/bmi/std.compat.pcm && \
   # fmt
@@ -56,25 +60,28 @@ RUN \
   ar rcs libjson.a json.o && \
   cp libjson.a /modules/lib/uzleo/ && \
   cd .. && \
-  rm -r json-parser && \
+  rm -r json-parser 
+
+RUN \
+  # neovim
+  wget -q https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz && \
+  tar zxf nvim-linux-x86_64.tar.gz && \
+  ln -sf /nvim-linux-x86_64/bin/nvim /usr/bin/nvim && \
+  rm nvim-linux-x86_64.tar.gz && \
+  # lazygit
+  wget -q https://github.com/jesseduffield/lazygit/releases/download/v0.50.0/lazygit_0.50.0_Linux_x86_64.tar.gz && \
+  tar zxf lazygit_0.50.0_Linux_x86_64.tar.gz && \
+  mv lazygit /usr/bin/. 
+
+# this is meant to go in above RUN block when modi has some stability
+RUN \
   # modi
   git clone --depth=1 https://github.com/uzleosharif/module-builder.git && \
   cd module-builder/ && \
   clang++ -std=c++26 -stdlib=libc++ -O3 -fmodule-file=uzleo.json=/modules/bmi/uzleo/json.pcm -fmodule-file=fmt=/modules/bmi/fmt.pcm -fmodule-file=std=/modules/bmi/std.pcm module_builder.cpp -o modi -ljson -lfmt -L /modules/lib/ -L /modules/lib/uzleo && \
   cp modi /usr/bin/. && \
   cd .. && \
-  rm -r module-builder
-
-RUN \
-  wget -q https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz && \
-  tar zxf nvim-linux-x86_64.tar.gz && \
-  ln -sf /nvim-linux-x86_64/bin/nvim /usr/bin/nvim && \
-  rm nvim-linux-x86_64.tar.gz && \
-  wget -q https://github.com/jesseduffield/lazygit/releases/download/v0.50.0/lazygit_0.50.0_Linux_x86_64.tar.gz && \
-  tar zxf lazygit_0.50.0_Linux_x86_64.tar.gz && \
-  mv lazygit /usr/bin/. && \
-  git config --global user.name "uzleo" && \
-  git config --global user.email "uzleo_eth@proton.me"
+  rm -r module-builder 
 
 
 WORKDIR /work/
