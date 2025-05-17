@@ -41,7 +41,7 @@ RUN \
   clang++ -stdlib=libc++ -std=c++26 -O3 /usr/lib/llvm-20/share/libc++/v1/std.cppm --precompile -o /modules/bmi/std.pcm && \
   clang++ -std=c++26 -stdlib=libc++ -O3 /usr/lib/llvm-20/share/libc++/v1/std.compat.cppm --precompile -fmodule-file=std=/modules/bmi/std.pcm -o /modules/bmi/std.compat.pcm && \
   # fmt
-  wget -q https://github.com/fmtlib/fmt/releases/download/11.1.4/fmt-11.1.4.zip && \
+  wget --no-check-certificate -q https://github.com/fmtlib/fmt/releases/download/11.1.4/fmt-11.1.4.zip && \
   unzip fmt-11.1.4.zip && \
   cd fmt-11.1.4/ && \
   cp src/fmt.cc src/fmt.cppm && \
@@ -64,12 +64,12 @@ RUN \
 
 RUN \
   # neovim
-  wget -q https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz && \
+  wget --no-check-certificate -q https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz && \
   tar zxf nvim-linux-x86_64.tar.gz && \
   ln -sf /nvim-linux-x86_64/bin/nvim /usr/bin/nvim && \
   rm nvim-linux-x86_64.tar.gz && \
   # lazygit
-  wget -q https://github.com/jesseduffield/lazygit/releases/download/v0.50.0/lazygit_0.50.0_Linux_x86_64.tar.gz && \
+  wget --no-check-certificate -q https://github.com/jesseduffield/lazygit/releases/download/v0.50.0/lazygit_0.50.0_Linux_x86_64.tar.gz && \
   tar zxf lazygit_0.50.0_Linux_x86_64.tar.gz && \
   mv lazygit /usr/bin/. && \
   # modi
