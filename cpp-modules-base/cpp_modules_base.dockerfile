@@ -46,19 +46,19 @@ RUN \
   cd fmt-11.1.4/ && \
   cp src/fmt.cc src/fmt.cppm && \
   mv include/fmt /modules/include/. && \
-  clang++ -std=c++26 -stdlib=libc++ -O3 -I /modules/include/ src/fmt.cppm -fmodule-output -c -o fmt.o && \
+  clang++ -std=c++26 -stdlib=libc++ -O3 -fPIC -I /modules/include/ src/fmt.cppm -fmodule-output -c -o fmt.o && \
   cp fmt.pcm /modules/bmi/ && \
-  ar rcs libfmt.a fmt.o && \
-  cp libfmt.a /modules/lib/ && \
+  clang++ -shared -o libfmt.so fmt.o && \
+  cp libfmt.so /modules/lib/ && \
   cd .. && \
   rm -r fmt* && \
   # uzleo.json
   git clone --depth=1 https://github.com/uzleosharif/json-parser.git && \
   cd json-parser && \
-  clang++ -std=c++26 -stdlib=libc++ -O3 src/json.cppm -c -o json.o -fmodule-output -fmodule-file=std=/modules/bmi/std.pcm -fmodule-file=fmt=/modules/bmi/fmt.pcm && \
+  clang++ -std=c++26 -stdlib=libc++ -O3 -fPIC src/json.cppm -c -o json.o -fmodule-output -fmodule-file=std=/modules/bmi/std.pcm -fmodule-file=fmt=/modules/bmi/fmt.pcm && \
   cp json.pcm /modules/bmi/uzleo/. && \
-  ar rcs libjson.a json.o && \
-  cp libjson.a /modules/lib/uzleo/ && \
+  clang++ -shared -o libjson.so json.o && \
+  cp libjson.so /modules/lib/uzleo/ && \
   cd .. && \
   rm -r json-parser 
 
