@@ -22,7 +22,9 @@ RUN \
   clang-format=1:20.0-63ubuntu1 \
   libc++-dev=1:20.0-63ubuntu1 \
   libc++abi-dev=1:20.0-63ubuntu1 \
+  libclang-rt-20-dev=1:20.1.2-0ubuntu1 \
   ninja-build=1.12.1-1 \
+  gdb=16.2-8ubuntu1 \
   ca-certificates=20241223 \
   curl=8.12.1-3ubuntu1 \
   wget=1.24.5-2ubuntu1 && \
@@ -51,7 +53,6 @@ RUN \
   clang++ -shared -o libfmt.so fmt.o && \
   cp libfmt.so /modules/lib/ && \
   cd .. && \
-  rm -r fmt* && \
   # uzleo.json
   git clone --depth=1 https://github.com/uzleosharif/json-parser.git && \
   cd json-parser && \
@@ -59,8 +60,7 @@ RUN \
   cp json.pcm /modules/bmi/uzleo/. && \
   clang++ -shared -o libjson.so json.o && \
   cp libjson.so /modules/lib/uzleo/ && \
-  cd .. && \
-  rm -r json-parser 
+  cd ..
 
 RUN \
   # neovim
