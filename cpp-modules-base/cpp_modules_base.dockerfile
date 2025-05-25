@@ -27,7 +27,11 @@ RUN \
   gdb=16.2-8ubuntu1 \
   ca-certificates=20241223 \
   curl=8.12.1-3ubuntu1 \
-  wget=1.24.5-2ubuntu1 && \
+  wget=1.24.5-2ubuntu1 \
+  htop=3.4.0-2 \
+  vim=2:9.1.0967-1ubuntu4 \
+  openssh-client=1:9.9p1-3ubuntu3.1 \
+  file=1:5.45-3build1 && \
   rm -rf /var/lib/apt/lists/* && \
   locale-gen en_US.UTF-8
 
@@ -78,7 +82,8 @@ RUN \
   clang++ -std=c++26 -stdlib=libc++ -O3 -fmodule-file=uzleo.json=/modules/bmi/uzleo/json.pcm -fmodule-file=fmt=/modules/bmi/fmt.pcm -fmodule-file=std=/modules/bmi/std.pcm module_builder.cpp -o modi -ljson -lfmt -L /modules/lib/ -L /modules/lib/uzleo && \
   cp modi /usr/bin/. && \
   cd .. && \
-  rm -r module-builder 
+  rm -r module-builder && \
+  chsh -s /usr/bin/fish
 
 
 WORKDIR /work/
