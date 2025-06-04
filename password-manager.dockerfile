@@ -1,11 +1,9 @@
 
 
 
-# NOTE: first build docker image `cpp-modules-base:v1.0.0` in your system
-# using cpp-modules-base/cpp_modules_base.dockerfile
 
 
-FROM cpp-modules-base:v1.0.0
+FROM ghcr.io/uzleosharif/cpp-modules-base:v1.0.0
 
 RUN \
   apt-get update && \
