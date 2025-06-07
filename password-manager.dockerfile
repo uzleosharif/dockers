@@ -3,11 +3,11 @@
 
 
 
-FROM ghcr.io/uzleosharif/cpp-modules-base:v1.0.0
+FROM ghcr.io/uzleosharif/cpp-modules-base:v1.0.1
 
 RUN \
-  apt-get update && \
-  apt-get install --no-install-recommends -y \
+  apt-get update -qq && \
+  apt-get install --no-install-recommends -qq -y \
   cmake=3.31.6-1ubuntu1 \
   libsodium-dev=1.0.18-1build3 && \
   rm -rf /var/lib/apt/lists/*
