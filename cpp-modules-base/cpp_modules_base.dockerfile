@@ -8,8 +8,8 @@
 FROM ubuntu:25.04
 
 RUN \
-  apt-get update && apt-get upgrade -y && \
-  apt-get install --no-install-recommends -y \
+  apt-get -qq update && apt-get upgrade -qq -y && \
+  apt-get install --no-install-recommends -qq -y \
   fish=4.0.1-1 \
   unzip=6.0-28ubuntu6 \
   git=1:2.48.1-0ubuntu1 \
