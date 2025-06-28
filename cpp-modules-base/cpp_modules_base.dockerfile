@@ -58,7 +58,7 @@ RUN \
   cp libfmt.so /modules/lib/ && \
   cd .. && \
   # uzleo.json
-  git clone --depth=1 https://github.com/uzleosharif/json-parser.git && \
+  git clone https://github.com/uzleosharif/json-parser.git && \
   cd json-parser && \
   clang++ -std=c++26 -stdlib=libc++ -O3 -fPIC src/json.cppm -c -o json.o -fmodule-output -fmodule-file=std=/modules/bmi/std.pcm -fmodule-file=fmt=/modules/bmi/fmt.pcm && \
   cp json.pcm /modules/bmi/uzleo/. && \
@@ -77,9 +77,9 @@ RUN \
   tar zxf lazygit_0.50.0_Linux_x86_64.tar.gz && \
   mv lazygit /usr/bin/. && \
   # modi
-  git clone --depth=1 https://github.com/uzleosharif/module-builder.git && \
+  git clone https://github.com/uzleosharif/module-builder.git && \
   cd module-builder/ && \
-  git checkout v0.1.0 && \
+  git checkout v0.2.0 && \
   clang++ -std=c++26 -stdlib=libc++ -O3 -fmodule-file=uzleo.json=/modules/bmi/uzleo/json.pcm -fmodule-file=fmt=/modules/bmi/fmt.pcm -fmodule-file=std=/modules/bmi/std.pcm module_builder.cpp -o modi -ljson -lfmt -L /modules/lib/ -L /modules/lib/uzleo && \
   cp modi /usr/bin/. && \
   cd .. && \
