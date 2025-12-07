@@ -8,7 +8,7 @@ RUN \
   apt-get install --no-install-recommends -qq -y \
   gcc-arm-none-eabi \
   binutils-arm-none-eabi \
+  libstdc++-arm-none-eabi-newlib \
   libnewlib-arm-none-eabi \
   libnewlib-dev && \
   rm -rf /var/lib/apt/lists/* 
-
