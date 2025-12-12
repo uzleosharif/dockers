@@ -64,7 +64,6 @@ RUN set -euo pipefail; \
   chmod +x /usr/local/bin/hadolint; \
   # lazygit (latest release)
   LAZYGIT_JSON="$(wget -qO- https://api.github.com/repos/jesseduffield/lazygit/releases/latest)"; \
-  LAZYGIT_VERSION="$(printf '%s\n' "${LAZYGIT_JSON}" | jq -r '.tag_name | sub("^v";"")')"; \
   LAZYGIT_URL="$(printf '%s\n' "${LAZYGIT_JSON}" | jq -r '.assets[] | select(.name | test("linux_x86_64\\.tar\\.gz$";"i")) | .browser_download_url' | head -n1)"; \
   test -n "${LAZYGIT_URL}"; \
   LAZYGIT_TAR="$(basename "${LAZYGIT_URL}")"; \
