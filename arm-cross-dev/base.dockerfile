@@ -1,6 +1,6 @@
 
 # we derive from `dockers/base/ubuntu_dev_base.dockerfile`
-FROM ubuntu-dev-base:25.10
+FROM ubuntu-dev-base:1.0.0
 
 # hadolint ignore=DL3008
 RUN \
@@ -12,3 +12,4 @@ RUN \
   libnewlib-arm-none-eabi \
   libnewlib-dev && \
   rm -rf /var/lib/apt/lists/* 
+
