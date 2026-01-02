@@ -38,6 +38,9 @@ RUN \
   libc++abi-dev \
   lld \
   llvm-dev \
+  python3-venv \
+  cmake \
+  cmake-curses-gui \
   file && \
   rm -rf /var/lib/apt/lists/* && \
   locale-gen en_US.UTF-8
