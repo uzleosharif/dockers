@@ -28,7 +28,7 @@ RUN cmake -B build -S . -G Ninja \
   -DLLVM_BUILD_EXAMPLES=OFF \
   -DCLANG_ENABLE_OBJC_REWRITER=OFF \
   -DLLVM_ENABLE_RUNTIMES= \
-  -DLLVM_DISTRIBUTION_COMPONENTS="clang;clang-resource-headers;clangd;clang-tidy;clang-format;lld;llvm-ar;llvm-ranlib;llvm-nm;llvm-objcopy;llvm-strip;llvm-config" \
+  -DLLVM_DISTRIBUTION_COMPONENTS="clang;clang-resource-headers;clangd;clang-tidy;clang-format;lld;llvm-ar;llvm-ranlib;llvm-nm;llvm-objcopy;llvm-strip;llvm-config;llvm-objdump" \
   -DLLVM_TOOLCHAIN_DISTRIBUTION_COMPONENTS="llvm-toolchain-config-files;llvm-toolchain-libs;llvm-toolchain-third-party-licenses" \
   && cmake --build build --target llvm-toolchain \
   && cmake --build build --target install-llvm-toolchain \
@@ -41,3 +41,8 @@ COPY --from=builder /opt/atfe/ /opt/atfe/
 
 # use latest codex tool
 RUN npm i -g @openai/codex
+
+WORKDIR /opt
+RUN \
+  git clone --depth 1 --recursive https://github.com/uzleosharif/pico-sdk -b master && \
+  cd pico-sdk
