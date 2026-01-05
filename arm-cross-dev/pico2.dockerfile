@@ -44,5 +44,5 @@ RUN npm i -g @openai/codex
 
 WORKDIR /opt
 RUN \
-  git clone --depth 1 --recursive https://github.com/uzleosharif/pico-sdk -b master && \
-  cd pico-sdk
+  git clone --depth 1 https://github.com/uzleosharif/pico-sdk -b master && \
+  git clone --depth 1 https://github.com/hathach/tinyusb -b master
