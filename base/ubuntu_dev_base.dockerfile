@@ -76,5 +76,3 @@ RUN set -euo pipefail; \
   rm "${LAZYGIT_TAR}"; \
   # codex
   npm install -g @openai/codex
-
-WORKDIR /work
