@@ -1,11 +1,5 @@
 
-FROM ghcr.io/circuit555/cpp-modules-base:v1.0.1
-
-RUN \
-  apt-get update -qq && \
-  apt-get install --no-install-recommends -qq -y \
-  cmake=3.31.6-1ubuntu1 && \
-  rm -rf /var/lib/apt/lists/*
+FROM cpp-modules:25.10
 
 # catch2 framework
 RUN \
