@@ -49,3 +49,7 @@ RUN \
   make -j16 && \
   make altinstall && \
   cd -
+
+# install copilot
+RUN \
+  npm install -g @github/copilot
