@@ -18,6 +18,7 @@ RUN \
   fd-find \
   locales \
   build-essential \
+  pkg-config \
   ninja-build \
   ca-certificates \
   curl \
@@ -41,6 +42,14 @@ RUN \
   python3-venv \
   cmake \
   cmake-curses-gui \
+  luarocks \
+  lua5.4-dev \
+  liblua5.4-dev \
+  trash-cli \
+  ghostscript \
+  kitty \
+  texlive-latex-base \
+  imagemagick \
   file && \
   rm -rf /var/lib/apt/lists/* && \
   locale-gen en_US.UTF-8
@@ -75,4 +84,8 @@ RUN set -euo pipefail; \
   mv lazygit /usr/bin/.; \
   rm "${LAZYGIT_TAR}"; \
   # codex
-  npm install -g @openai/codex
+  npm install -g @openai/codex; \
+  # tree-sitter-cli
+  npm install -g tree-sitter-cli; \
+  # mermaid-cli
+  npm install -g @mermaid-js/mermaid-cli; \
