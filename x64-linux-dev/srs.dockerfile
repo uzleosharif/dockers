@@ -27,7 +27,6 @@ RUN \
   libsm-dev \
   libibverbs-dev \
   libxml2-dev \
-  libfreetype-dev \
   libtool \
   libomp-dev \
   libfontconfig1 \
@@ -36,6 +35,10 @@ RUN \
   libblas-dev \
   liblapack-dev \
   libeigen3-dev \
+  libharfbuzz-dev \
+  libpng-dev \
+  libbz2-dev \
+  libbrotli-dev \
   libgoogle-glog-dev \
   libgflags-dev \
   libsuitesparse-dev \
@@ -69,3 +72,16 @@ RUN \
 # install copilot
 RUN \
   npm install -g @github/copilot
+
+# SRS needs freetype v2.13.2 because modern versions than introduce breaking changes 
+# to one of our packages (EP_FTGL) hence we build it specifically from source rather 
+# than apt getting it (v2.13.3 in ubuntu 25.10)
+WORKDIR /tmp
+RUN wget -O freetype.tar.xz https://download.savannah.gnu.org/releases/freetype/freetype-2.13.2.tar.xz \
+ && tar -xf freetype.tar.xz
+
+WORKDIR /tmp/freetype-2.13.2
+RUN cmake -S . -B build \
+      -DCMAKE_BUILD_TYPE=Release \
+ && cmake --build build -j"$(nproc)" \
+ && cmake --install build
