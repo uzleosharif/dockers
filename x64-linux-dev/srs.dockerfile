@@ -31,6 +31,22 @@ RUN \
   libtool \
   libomp-dev \
   libfontconfig1 \
+  libsuitesparse-dev \
+  libsuperlu-dev \
+  libblas-dev \
+  liblapack-dev \
+  libeigen3-dev \
+  libgoogle-glog-dev \
+  libgflags-dev \
+  libsuitesparse-dev \
+  libsuperlu-dev \
+  libboost-dev \
+  libsparsehash-dev \
+  libadolc-dev \
+  libmpfr-dev \
+  libfftw3-dev \
+  libblas-dev \
+  liblapack-dev \
   bison \
   flex \
   tcl && \
