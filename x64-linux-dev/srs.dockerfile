@@ -59,16 +59,6 @@ RUN \
   ln -s /usr/lib/x86_64-linux-gnu/libEGL.so.1 /lib64/libEGL.so && \
   ln -s /usr/lib/x86_64-linux-gnu/libGL.so.1 /lib64/libGL.so
 
-RUN \
-  cd /tmp && \
-  wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tar.xz && \
-  tar -xvf Python-2.7.18.tar.xz && \
-  cd Python-2.7.18 && \
-  CC="gcc -std=gnu89" CXX="g++ -std=c++17" ./configure --with-cxx-main && \
-  make -j16 && \
-  make altinstall && \
-  cd -
-
 # install copilot
 RUN \
   npm install -g @github/copilot
