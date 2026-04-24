@@ -8,7 +8,9 @@ FROM ubuntu-dev-base:1.0.0 AS builder
 
 # hadolint ignore=DL3008
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends meson \
+  && apt-get install -y --no-install-recommends \
+  meson \
+  bubblewrap \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /src

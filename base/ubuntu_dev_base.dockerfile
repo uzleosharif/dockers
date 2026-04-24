@@ -50,6 +50,7 @@ RUN \
   kitty \
   texlive-latex-base \
   imagemagick \
+  bubblewrap \
   file && \
   rm -rf /var/lib/apt/lists/* && \
   locale-gen en_US.UTF-8
