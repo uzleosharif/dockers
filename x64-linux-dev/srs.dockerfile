@@ -50,6 +50,9 @@ RUN \
   libfftw3-dev \
   libblas-dev \
   liblapack-dev \
+  mold \
+  ccache \
+  python3-pytest \
   bison \
   flex \
   tcl && \
